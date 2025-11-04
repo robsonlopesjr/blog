@@ -12,3 +12,15 @@ dependencies = [
 dev = [
     "ruff>=0.14.3",
 ]
+
+[tool.ruff]
+line-length = 79
+indent-width = 4
+exclude = [".venv"]
+
+[tool.ruff.lint]
+select = ["I", "F", "E", "W", "PL", "PT"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
