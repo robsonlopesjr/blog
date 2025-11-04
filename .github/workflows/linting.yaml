@@ -1,0 +1,29 @@
+name: Linting
+
+on: pull_request
+
+jobs:
+  ruff:
+    name: Ruff
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy repository files for virtual machine Github Actions
+        uses: actions/checkout@v5
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: Install dependencies with uv
+        run: uv sync
+
+      - name: Check Lint
+        run: uv run ruff check .
+
+      - name: Check Format
+        run: uv run ruff format .
